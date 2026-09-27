@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Hamed Alammar · Arabic Language Specialist</title>
+    <meta name="description" content="Hamed Alammar (حامد العمار) listens to how Arabic is really spoken and turns it into clear, trustworthy text for people and machines. Based in Columbus, Ohio." />
+    <meta name="theme-color" content="#EDEFF6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#07080E" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hamed Alammar" />
+    <meta property="og:title" content="Hamed Alammar · Arabic Language Specialist" />
+    <meta property="og:description" content="I listen to how Arabic is really spoken, and turn it into clear, trustworthy text for people and machines." />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/images/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Hamed Alammar, حامد العمار, Arabic Language Specialist" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ar_AR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hamed Alammar · Arabic Language Specialist" />
+    <meta name="twitter:description" content="I listen to how Arabic is really spoken, and turn it into clear, trustworthy text for people and machines." />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/images/og.png" />
+
+
+    <script>
+      // Apply saved language and theme before first paint to avoid a flash.
+      (function () {
+        try {
+          var l = localStorage.getItem('ha-lang'), t = localStorage.getItem('ha-theme'), d = document.documentElement;
+          if (l === 'ar') {
+            d.lang = 'ar'; d.dir = 'rtl';
+            ['reem-kufi-arabic-500', 'plex-arabic-400'].forEach(function (f) {
+              var k = document.createElement('link'); k.rel = 'preload'; k.as = 'font'; k.type = 'font/woff2'; k.crossOrigin = '';
+              k.href = '/fonts/' + f + '.woff2'; document.head.appendChild(k);
+            });
+          }
+          if (t === 'dark' || t === 'light') d.dataset.theme = t;
+        } catch (e) {}
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('rm');
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="loader" aria-hidden="true"><div class="bar"><i id="lbar"></i></div><div class="count" id="lcount">000</div></div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -66,7 +66,7 @@ Live at https://hamed-alammar.pages.dev
 
 - `public/_headers` sets caching (hashed `/assets/*` cached for a year, HTML always revalidated, images and audio for a day) plus basic security headers.
 - There is no `404.html`, so Pages serves `index.html` for any unknown path. Deep links such as `/about` or `/dialects` load the page and scroll to that section. `#section` anchors work as usual.
-- When the public URL changes (for example after adding a domain), update `VITE_SITE_URL` in `.env.production` so the canonical and Open Graph tags, `robots.txt` and `sitemap.xml` point to it, then run `npm run deploy` again.
+- When the public URL changes (for example after adding a domain), update `url` in `site.config.json` so the canonical and Open Graph tags, `robots.txt` and `sitemap.xml` point to it, then run `npm run deploy` again.
 
 ## Connect a custom domain (for example hamedalammar.com)
 
@@ -76,7 +76,7 @@ Live at https://hamed-alammar.pages.dev
    - If the domain is at another registrar, either move its nameservers to Cloudflare (**Add a domain** in the dashboard shows the two nameservers to set at your registrar), or add the `CNAME` record Cloudflare shows (`hamedalammar.com` → `hamed-alammar.pages.dev`) at your DNS provider. Apex domains generally need Cloudflare nameservers.
 3. Repeat for `www.hamedalammar.com` if you want it too, and add a redirect rule from `www` to the apex (**Rules → Redirect Rules**) so there is one canonical address.
 4. Wait for the status to show **Active** (a few minutes up to a day). HTTPS is issued automatically.
-5. Set `VITE_SITE_URL=https://hamedalammar.com` in `.env.production` and run `npm run deploy`.
+5. Set `"url": "https://hamedalammar.com"` in `site.config.json` and run `npm run deploy`.
 
 ## Project map
 

@@ -13,8 +13,7 @@ html = html.replace(/<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.
 writeFileSync(file, html)
 
 // robots.txt and sitemap.xml use the same site URL as the canonical and Open Graph tags.
-const site = (readFileSync(resolve('.env.production'), 'utf8').match(/^VITE_SITE_URL=(.+)$/m)?.[1] ?? '').trim().replace(/\/$/, '')
-if (!site) throw new Error('VITE_SITE_URL missing in .env.production')
+const site = (process.env.VITE_SITE_URL || JSON.parse(readFileSync(resolve('site.config.json'), 'utf8')).url).replace(/\/$/, '')
 writeFileSync(resolve('dist/robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\n`)
 writeFileSync(resolve('dist/sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

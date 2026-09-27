@@ -47,6 +47,14 @@ export default function App() {
   const { t } = useLang()
 
   useEffect(() => {
+    // Deep links: /about, /work, ... are served index.html by Pages; turn them into #anchors.
+    const slug = location.pathname.replace(/^\/+|\/+$/g, '')
+    const target = slug && document.getElementById(slug)
+    if (target) {
+      history.replaceState(null, '', '/#' + slug)
+      target.scrollIntoView()
+    }
+
     let cleanup = () => {}
     const loaded = runLoader()
 

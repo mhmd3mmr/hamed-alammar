@@ -11,5 +11,15 @@ let html = readFileSync(file, 'utf8').replace('<div id="root"></div>', `<div id=
 html = html.replace(/<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/, (_, href) =>
   `<style>${readFileSync(resolve('dist' + href), 'utf8')}</style>`)
 writeFileSync(file, html)
+
+// robots.txt and sitemap.xml use the same site URL as the canonical and Open Graph tags.
+const site = (readFileSync(resolve('.env.production'), 'utf8').match(/^VITE_SITE_URL=(.+)$/m)?.[1] ?? '').trim().replace(/\/$/, '')
+if (!site) throw new Error('VITE_SITE_URL missing in .env.production')
+writeFileSync(resolve('dist/robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\n`)
+writeFileSync(resolve('dist/sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>${site}/</loc><lastmod>${new Date().toISOString().slice(0, 10)}</lastmod></url>
+</urlset>
+`)
 rmSync('dist-ssr', { recursive: true, force: true })
 console.log('prerendered dist/index.html')
